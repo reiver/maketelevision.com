@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" vocab="https://schema.org/" typeof="Article" class="article">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="/text-readability/readmode.css" />
+<title>RSS and Atom Feed Auto-Discovery for Internet Radio</title>
+<meta name="author" content="Charles Iliya Krempeaux" />
+</head>
+<body>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+	<ol>
+		<li><a href="/">Home</a></li>
+		<li><a href="../../">maketelevision.com</a></li>
+		<li>Log</li>
+		<li><a href="./" aria-current="page">RSS and Atom Feed Auto-Discovery for Internet Radio</a></li>
+	</ol>
+</nav>
+
+<main>
+<article>
+	<header>
+		<hgroup>
+			<h1 property="headline">RSS and Atom Feed Auto-Discovery for Internet Radio</h1>
+			<p>
+				<code>&lt;link media="tv"/&gt;</code>
+			</p>
+		</hgroup>
+		<p>
+			by <a href="https://reiver.link/">Charles Iliya Krempeaux</a> on <time datetime="2006-04-02T13:31:19-04:00">Tuesday March 14, 2006</time>
+		</p>
+	</header>
+	<p>
+		 There's actually no reason why this same technique could not be used for Internet Radio too.
+	</p>
+	<p>
+		 All you have to do is add the following to your podcast feeds:
+	</p>
+	<figure>
+		<pre><code>
+media="radio"
+		</code></pre>
+	</figure>
+	<p>
+		As in:
+	</p>
+	<figure>
+		<pre><code>
+&lt;link <strong>media="radio"</strong>
+      rel="airplan"
+      type="application/rss+xml"
+      href="http://example.com/feed"
+      title="Example"
+/&gt;
+		</code></pre>
+	</figure>
+	<footer>
+		<include src="../../author.html"></include>
+		<include src="../../license.html"></include>
+	</footer>
+</article>
+</main>
+</body>
+</html>
