@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" vocab="https://schema.org/" typeof="Article" class="article">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="/text-readability/readmode.css" />
+<title>RSS and Atom Feed Auto-Discovery for Internet TV</title>
+<meta name="author" content="Charles Iliya Krempeaux" />
+</head>
+<body>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+	<ol>
+		<li><a href="/">Home</a></li>
+		<li><a href="../../">maketelevision.com</a></li>
+		<li>Log</li>
+		<li><a href="./" aria-current="page">RSS and Atom Feed Auto-Discovery for Internet TV</a></li>
+	</ol>
+</nav>
+
+<main>
+<article>
+	<header>
+		<hgroup>
+			<h1 property="headline">RSS and Atom Feed Auto-Discovery for Internet TV</h1>
+			<p>
+				&lt;link media="tv"/&gt;
+			</p>
+		</hgroup>
+		<p>
+			by <a href="https://reiver.link/">Charles Iliya Krempeaux</a> on <time datetime="2006-03-14T12:42:33-05:00">Tuesday March 14, 2006</time>
+		</p>
+	</header>
+	<p>
+		Blogs, Internet radio shows, and Internet TV shows all syndicate themselves using RSS or Atom feeds.
+		But how do you tell the difference between the different kinds of feeds‽
+	</p>
+	<p>
+		How do you know if a feed is for an Internet TV show (all full of videos), or for an Internet radio show (containing only audio), or if the feed is for a news site (and only contains text news articles) without having to actually download, read and understand the feed‽  Sure if you are a human you may be able to figure it out (based on what's on the webpage that links to the feed); but what about machines‽  What about browsers, search engines, web crawlers, and other kinds of software‽  How will they be able to figure it out‽
+	</p>
+	<p>
+		Luckily HTML already provides a solution to this.
+		We (Internet TV show makers) just have to use it.
+		Here's how.
+	</p>
+	<section>
+		<h1>Feed Auto-Discovery</h1>
+		<p>
+			Before getting into the solution though it's important to understand how feed syndication is currently done.
+			(This requires some knowledge of HTML.
+			If you do NOT understand HTML, then you may want to get whomever made your Internet TV software to look at this article to make sure that your Internet TV software gets this added.)
+		</p>
+		<p>
+			So first a little background information.
+			(Note, if you already know how feed auto-discovery is done you can just skip to the next section.)
+		</p>
+		<p>
+			Long ago the only way you could find RSS feeds was by <em>manually</em> searching through a blog or news site (or whatever) and try to find the <em>feed link</em>.
+			Sometimes they were easy to find; but all too often they weren't.
+			(People put them in different places on the page.
+			Some people linked them in with text.
+			Some people linked them in with images.
+			And people used different kinds of text and images to link them in.
+			Not to mention the whole usability problem with RSS and Atom not being handled by the browser in a <em>useful</em> way.)
+		</p>
+		<p>
+			Now, in addition to this (at that time) most machines (like browsers, search engines, web crawlers, and other kinds of software) could NOT find these RSS feed links.
+			This impact of this problem is probably far worse than you may realize.
+		</p>
+		<p>
+			At one point <a href="http://mattgriffith.net/2002/05/29.html#a57" title="RSS Auto-Discovery by Matt Griffith">Matt Griffith</a> had an idea that was refined by <a href="http://diveintomark.org/archives/2002/05/30/rss_autodiscovery" title="RSS Auto-Discovery by Mark Pilgrim">Mark Pilgrim</a>.
+			This idea was called RSS auto-discovery.  And it looks something like this....
+		</p>
+		<figure>
+			<code><pre>
+&lt;link rel="alternate"
+      type="application/rss+xml"
+      href="http://example.com/feed"
+      title="Example"
+/&gt;
+			</pre></code>
+		</figure>
+		<p>
+			Code like this is put in the <code>&lt;head&gt;</code> of the <em>home page</em> of one's blog, news site, etc.
+			And it makes it so that it is <em>easy</em> to find RSS (and Atom) feeds of a site.
+		</p>
+		<p>
+			And if you wanted to use RSS auto-discovery on another page on the same site, other than the home page, then you might use code like the following....
+		</p>
+		<figure>
+			<code><pre>
+&lt;link rel="home"
+      type="application/rss+xml"
+      href="http://example.com/feed"
+      title="Example"
+/&gt;
+			</pre></code>
+		</figure>
+		<p>
+			(Note that the <code>rel</code> attribute has changed.
+			Where it was <code>rel="alternate"</code> in the previous example, here it is <code>rel="home"</code>.)
+		</p>
+		<p>
+			RSS Feed auto-discovery worked great!
+			Now it was relatively trival for both humans and machines to find RSS (and later Atom) feeds.
+		</p>
+		<p>
+			For humans, there were bookmarklets to automagically find these RSS and Atom feeds, with a single click.
+			(Later on native browser support was added, which made things even easier.)
+			And for machines, it finally became simple to find RSS and Atom feeds.
+		</p>
+	</section>
+	<section>
+		<h1>Feed Confusion</h1>
+		<p>
+			But as time went on, RSS and Atom feeds found uses amoung other things besides just text-dominated blogs and news sites.
+			We started seeing RSS and Atom feeds being used to syndicate Internet radio shows (also known as podcasts).
+			And saw RSS and Atom feeds being used to syndicate Internet TV shows (also know as vlogs, vidcasts, vodcasts, videoblogs, etc).
+		</p>
+		<p>
+			Even with <em>feed auto-discovery</em>, we had a new problem.
+		</p>
+		<p>
+			People typically <em>handle</em> the different kind of feeds differently.
+			(Typically, people use one program to read their blog and news feeds.
+			Another program to listen to their Internet radio feeds.
+			And yet another program to watch their Internet TV feeds.)
+			What's needed is a way for both humans and machines to be able to tell the different kinds of feeds apart.
+		</p>
+	</section>
+	<section>
+		<h1>HTML and TV</h1>
+		<p>
+			Although most people probably don't know it, HTML actually has some facilities for dealing with TV.  (Remember, Internet TV is a form of TV; so these facilities are useful and relevant for us Internet TV makers.)
+		</p>
+		<p>
+			In particular the HTML <code>&lt;link&gt;</code> element has a way of "saying" that what it <em>links to</em> is meant for TV.
+			(Which is great since RSS and Atom feed auto-discovery is done with the HTML <code>&lt;link&gt;</code> element.)
+			This is done with the <em>media</em> attribute of the HTML <code>&lt;link&gt;</code> element.
+		</p>
+	</section>
+	<section>
+		<h1>Internet TV Feeds</h1>
+		<p>
+			The easiest thing to do at this point is to just show the two previous examples transformed into Internet TV feeds.
+			The first example is below.
+		</p>
+		<figure>
+			<code><pre>
+&lt;link <strong>media="tv"</strong>
+      rel="alternate"
+      type="application/rss+xml"
+      href="http://example.com/feed"
+      title="Example"
+/&gt;
+			</pre></code>
+		</figure>
+		<p>
+			And here's the second example.
+		</p>
+		<figure>
+			<code><pre>
+&lt;link <strong>media="tv"</strong>
+      rel="home"
+      type="application/rss+xml"
+      href="http://example.com/feed"
+      title="Example"
+/&gt;
+			</pre></code>
+		</figure>
+		<p>
+			Note that the only change is the addition of <code>media="tv"</code>.
+			That's it.
+			That's how easy it is to mark your feed as an Internet TV feed.
+		</p>
+	</section>
+	<section>
+		<h1>Extra Info for Software Engineers</h1>
+		<p>
+			If you are just creating your own Internet TV show (and NOT writing software), then you do NOT have to read this last section.
+			This is just here to help people who create machines (like browsers, search engines, web crawlers, etc) to write their software.
+		</p>
+		<p>
+			If you are writing software then you should note the following points.
+		</p>
+		<ol>
+			<li>
+				<p>
+					You can tell which <code>&lt;link&gt;</code> elements point to feeds by the MIME type given in the <code>type</code> attribute.
+					(Note, we're talking about any kind of feed in this point.
+					Not just Internet TV feeds.)
+				</p>
+				<p>
+					(Refer to #3 for a list of feed MIME types.
+					Also, make note of #7 when trying to get the MIME type from the <em>type</em> attribute of the <code>&lt;link&gt;</code> element.)
+				</p>
+			</li>
+			<li>
+				<p>
+					There are 2 things that mark a <code>&lt;link&gt;</code> element as pointing to an Internet TV feed.
+				</p>
+				<p>
+					(A): it has a feed MIME type.
+					(Refer to #3 for a list of the different feed MIME types.
+					Also pay attention to #7 when trying to figure out the MIME type for a <code>&lt;link&gt;</code>.)
+				</p>
+				<p>
+					And (B): it has <code>tv</code> as a <em>media descriptor</em>.
+					(Make note of #6 when trying to figure out the <em>media descriptor(s)</em> given by the <em>media</em> attribute of the <code>&lt;link&gt;</code> element.)
+				</p>
+			</li>
+			<li>There are 2 different MIME types you should be watching for.  (One is for RSS and the other is for Atom.)  They are:
+				<ul>
+					<li><code>application/rss+xml</code></li>
+					<li><code>application/atom+xml</code></li>
+				</ul>
+				<p>
+					Currently (at the time of writing this article), these are the only feed MIME types.
+				</p>
+			</li>
+			<li>
+				<p>
+					The <code>rel</code> attribute (of the HTML <code>&lt;link&gt;</code> element) has NO importance in terms of finding feeds.
+					(Whether it be an Internet TV feed, or any other kinds of feed.)
+				</p>
+				<p>
+					People tend to think that it must be <code>rel="alternate"</code>.
+					<strong>But this is wrong!</strong>
+					(It could be that, but it doesn't have to be.
+					It could be <code>rel="home"</code>, <code>rel="apple orange banana"</code>, or anything else.)
+				</p>
+				<p>
+					Refer to <a href="http://www.w3.org/TR/REC-html40/types.html#type-links">Section 6.12 of the HTML 4.01 specification </a> for more information on the meanings of these different relations.
+				</p>
+			</li>
+    <li>
+        <p>
+            The <code>rel</code> attribute can contain more than one relation.  For example, instead of just having:
+        </p>
+        <code><pre>
+rel="alternate"
+        </pre></code>
+        <p>
+            We could have:
+        </p>
+        <code><pre>
+rel="alternate example something"
+        </pre></code>
+        <p>
+            (Basically, the <code>rel</code> attribute contains a space separated list of <em>link types</em>.)
+        </p>
+    </li>
+    <li>
+        <p>
+            The <code>media</code> attribute can contain more than one <em>media descriptor</em>.  For example, instead of just having:
+        </p>
+        <code><pre>
+media="tv"
+        </pre></code>
+        <p>
+            We could have:
+        </p>
+        <code><pre>
+media="screen, tv, 3d-glasses, print and resolution &gt; 90dpi"
+        </pre></code>
+        <p>
+            Both of these have <code>tv</code> as a <em>media descriptor</em>.
+        </p>
+        <p>
+            Refer to <a href="http://www.w3.org/TR/REC-html40/types.html#type-media-descriptors">Section 6.13 of the HTML 4.01 specification</a> for more info on media descriptors.
+        </p>
+    </li>
+    <li>
+        <p>
+            The <code>type</code> attribute of the HTML <code>&lt;link&gt;</code> element contains a <em>content type</em> and not just a MIME type.  Therefore a <em>type</em> like the following:
+        </p>
+        <code><pre>
+type="application/rss+xml"
+        </pre></code>
+        <p>
+            Has the exact same MIME type as the <em>type</em> below:
+        </p>
+        <code><pre>
+type="application/rss+xml; a=b; c=d;efghi=&amp;quot;Hello Worldw!&amp;quot;"
+        </pre></code>
+        <p>
+            Both of these have the RSS MIME type of <code>application/rss+xml</code>.
+        </p>
+        <p>
+            Refer to <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">Section 14.17 of RFC 2616</a> for more information on <em>content types</em>.
+        </p>
+    </li>
+    <li>
+        <p>
+            There is an HTTP header with equivalent semantics to the HTTP <code>&lt;link&gt;</code> element.  It is the HTTP <code>Link</code> header. For example:
+        </p>
+        <code><pre>
+HTTP/1.1 200 OK
+Link: &lt;http://example.com/feed&gt;; rel=alternate; type="application/rss+xml"; media=tv
+        </pre></code>
+        <p>
+            For more information on the HTTP <code>Link</code> header refer to section 19.6.2.4 of <a href="http://www.ietf.org/rfc/rfc2068.txt">RFC 2068</a>.
+        </p>
+    </li>
+</ol>
+	</section>
+	<section>
+		<h1>Summary</h1>
+		<p>
+			So, for anyone who skipped reading the article, and just wanted to read the <em>summary</em>, all you need to do to mark your feed as an Internet TV feed is to add the following attribute to your feed <code>&lt;link&gt;</code>'s:
+		</p>
+		<figure>
+			<code><pre>
+media="tv"
+			</pre></code>
+		</figure>
+		<p>
+			As in:
+		</p>
+		<figure>
+			<code><pre>
+&lt;link <strong>media="tv"</strong>
+      rel="banana"
+      type="application/rss+xml"
+      href="http://example.com/feed"
+      title="Example"
+/&gt;
+			</pre></code>
+		</figure>
+		<p>
+			It's that simple!
+		</p>
+	</section>
+	<footer>
+		<include src="../../author.html"></include>
+		<include src="../../license.html"></include>
+	</footer>
+</article>
+</main>
+</body>
+</html>
