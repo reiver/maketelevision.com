@@ -268,39 +268,45 @@ media="screen, tv, 3d-glasses, print and resolution &gt; 90dpi"
             Refer to <a href="http://www.w3.org/TR/REC-html40/types.html#type-media-descriptors">Section 6.13 of the HTML 4.01 specification</a> for more info on media descriptors.
         </p>
     </li>
-    <li>
-        <p>
-            The <code>type</code> attribute of the HTML <code>&lt;link&gt;</code> element contains a <em>content type</em> and not just a MIME type.  Therefore a <em>type</em> like the following:
-        </p>
-        <code><pre>
+			<li>
+				<p>
+					The <code>type</code> attribute of the HTML <code>&lt;link&gt;</code> element contains a <em>content type</em> and not just a MIME type.  Therefore a <em>type</em> like the following:
+				</p>
+					<code><pre>
 type="application/rss+xml"
-        </pre></code>
-        <p>
-            Has the exact same MIME type as the <em>type</em> below:
-        </p>
-        <code><pre>
+					</pre></code>
+				<p>
+					Has the exact same MIME type as the <em>type</em> below:
+				</p>
+				<figure>
+					<code><pre>
 type="application/rss+xml; a=b; c=d;efghi=&amp;quot;Hello Worldw!&amp;quot;"
-        </pre></code>
-        <p>
-            Both of these have the RSS MIME type of <code>application/rss+xml</code>.
-        </p>
-        <p>
-            Refer to <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">Section 14.17 of RFC 2616</a> for more information on <em>content types</em>.
-        </p>
-    </li>
-    <li>
-        <p>
-            There is an HTTP header with equivalent semantics to the HTTP <code>&lt;link&gt;</code> element.  It is the HTTP <code>Link</code> header. For example:
-        </p>
-        <code><pre>
+					</pre></code>
+				</figure>
+				<p>
+					Both of these have the RSS MIME type of <code>application/rss+xml</code>.
+				</p>
+				<p>
+					Refer to <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17">Section 14.17 of RFC 2616</a> for more information on <em>content types</em>.
+			        </p>
+			</li>
+			<li>
+				<p>
+					There is an HTTP header with equivalent semantics to the HTTP <code>&lt;link&gt;</code> element.
+					It is the HTTP <code>Link</code> header.
+					For example:
+				</p>
+				<figure>
+				        <code><pre>
 HTTP/1.1 200 OK
 Link: &lt;http://example.com/feed&gt;; rel=alternate; type="application/rss+xml"; media=tv
-        </pre></code>
-        <p>
-            For more information on the HTTP <code>Link</code> header refer to section 19.6.2.4 of <a href="http://www.ietf.org/rfc/rfc2068.txt">RFC 2068</a>.
-        </p>
-    </li>
-</ol>
+					</pre></code>
+				</figure>
+				<p>
+					For more information on the HTTP <code>Link</code> header refer to section 19.6.2.4 of <a href="http://www.ietf.org/rfc/rfc2068.txt">RFC 2068</a>.
+				</p>
+			</li>
+		</ol>
 	</section>
 	<section>
 		<h1>Summary</h1>
