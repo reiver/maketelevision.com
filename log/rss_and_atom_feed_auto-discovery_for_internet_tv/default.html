@@ -70,13 +70,13 @@
 			This idea was called RSS auto-discovery.  And it looks something like this....
 		</p>
 		<figure>
-			<code><pre>
+			<pre><code>
 &lt;link rel="alternate"
       type="application/rss+xml"
       href="http://example.com/feed"
       title="Example"
 /&gt;
-			</pre></code>
+			</code></pre>
 		</figure>
 		<p>
 			Code like this is put in the <code>&lt;head&gt;</code> of the <em>home page</em> of one's blog, news site, etc.
@@ -86,13 +86,13 @@
 			And if you wanted to use RSS auto-discovery on another page on the same site, other than the home page, then you might use code like the following....
 		</p>
 		<figure>
-			<code><pre>
+			<pre><code>
 &lt;link rel="home"
       type="application/rss+xml"
       href="http://example.com/feed"
       title="Example"
 /&gt;
-			</pre></code>
+			</code></pre>
 		</figure>
 		<p>
 			(Note that the <code>rel</code> attribute has changed.
@@ -144,27 +144,27 @@
 			The first example is below.
 		</p>
 		<figure>
-			<code><pre>
+			<pre><code>
 &lt;link <strong>media="tv"</strong>
       rel="alternate"
       type="application/rss+xml"
       href="http://example.com/feed"
       title="Example"
 /&gt;
-			</pre></code>
+			</code></pre>
 		</figure>
 		<p>
 			And here's the second example.
 		</p>
 		<figure>
-			<code><pre>
+			<pre><code>
 &lt;link <strong>media="tv"</strong>
       rel="home"
       type="application/rss+xml"
       href="http://example.com/feed"
       title="Example"
 /&gt;
-			</pre></code>
+			</code></pre>
 		</figure>
 		<p>
 			Note that the only change is the addition of <code>media="tv"</code>.
@@ -235,15 +235,15 @@
         <p>
             The <code>rel</code> attribute can contain more than one relation.  For example, instead of just having:
         </p>
-        <code><pre>
+        <pre><code>
 rel="alternate"
-        </pre></code>
+        </code></pre>
         <p>
             We could have:
         </p>
-        <code><pre>
+        <pre><code>
 rel="alternate example something"
-        </pre></code>
+        </code></pre>
         <p>
             (Basically, the <code>rel</code> attribute contains a space separated list of <em>link types</em>.)
         </p>
@@ -252,15 +252,15 @@ rel="alternate example something"
         <p>
             The <code>media</code> attribute can contain more than one <em>media descriptor</em>.  For example, instead of just having:
         </p>
-        <code><pre>
+        <pre><code>
 media="tv"
-        </pre></code>
+        </code></pre>
         <p>
             We could have:
         </p>
-        <code><pre>
+        <pre><code>
 media="screen, tv, 3d-glasses, print and resolution &gt; 90dpi"
-        </pre></code>
+        </code></pre>
         <p>
             Both of these have <code>tv</code> as a <em>media descriptor</em>.
         </p>
@@ -272,16 +272,16 @@ media="screen, tv, 3d-glasses, print and resolution &gt; 90dpi"
 				<p>
 					The <code>type</code> attribute of the HTML <code>&lt;link&gt;</code> element contains a <em>content type</em> and not just a MIME type.  Therefore a <em>type</em> like the following:
 				</p>
-					<code><pre>
+					<pre><code>
 type="application/rss+xml"
-					</pre></code>
+					</code></pre>
 				<p>
 					Has the exact same MIME type as the <em>type</em> below:
 				</p>
 				<figure>
-					<code><pre>
+					<pre><code>
 type="application/rss+xml; a=b; c=d;efghi=&amp;quot;Hello Worldw!&amp;quot;"
-					</pre></code>
+					</code></pre>
 				</figure>
 				<p>
 					Both of these have the RSS MIME type of <code>application/rss+xml</code>.
@@ -297,10 +297,10 @@ type="application/rss+xml; a=b; c=d;efghi=&amp;quot;Hello Worldw!&amp;quot;"
 					For example:
 				</p>
 				<figure>
-				        <code><pre>
+				        <pre><code>
 HTTP/1.1 200 OK
 Link: &lt;http://example.com/feed&gt;; rel=alternate; type="application/rss+xml"; media=tv
-					</pre></code>
+					</code></pre>
 				</figure>
 				<p>
 					For more information on the HTTP <code>Link</code> header refer to section 19.6.2.4 of <a href="http://www.ietf.org/rfc/rfc2068.txt">RFC 2068</a>.
@@ -314,22 +314,22 @@ Link: &lt;http://example.com/feed&gt;; rel=alternate; type="application/rss+xml"
 			So, for anyone who skipped reading the article, and just wanted to read the <em>summary</em>, all you need to do to mark your feed as an Internet TV feed is to add the following attribute to your feed <code>&lt;link&gt;</code>'s:
 		</p>
 		<figure>
-			<code><pre>
+			<pre><code>
 media="tv"
-			</pre></code>
+			</code></pre>
 		</figure>
 		<p>
 			As in:
 		</p>
 		<figure>
-			<code><pre>
+			<pre><code>
 &lt;link <strong>media="tv"</strong>
       rel="banana"
       type="application/rss+xml"
       href="http://example.com/feed"
       title="Example"
 /&gt;
-			</pre></code>
+			</code></pre>
 		</figure>
 		<p>
 			It's that simple!
